@@ -8,6 +8,11 @@ client.api_key = os.getenv("OPENAI_API_KEY")
 conversations = {}
 
 
+@app.route('/', methods=['GET'])
+def home():
+    return 'OpenAI Chatbot API is running!'
+
+
 @app.route('/start_session', methods=['POST'])
 def start_session():
     # Generate a unique session ID
