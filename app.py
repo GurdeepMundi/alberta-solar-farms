@@ -10,7 +10,71 @@ conversations = {}
 
 @app.route('/', methods=['GET'])
 def home():
-    return 'OpenAI Chatbot API is running!'
+    html_doc = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Chat price negotiator documentation</title>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+            h1 { color: #2c3e50; }
+            h2 { color: #34495e; }
+            pre { background: #f4f4f4; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        </style>
+    </head>
+    <body>
+        <h1>Chat price negotiator documentation</h1>
+        <h2>Endpoints:</h2>
+        <ul>
+            <li>
+                <strong>GET /</strong>
+                <p>Returns this documentation for the API.</p>
+            </li>
+            <li>
+                <strong>POST /start_session</strong>
+                <p>Starts a new conversation session with a chat based negotiator.</p>
+                <pre>
+Request: None
+Response:
+{
+  "session_id": "A unique session ID"
+}
+                </pre>
+            </li>
+            <li>
+                <strong>POST /send_message</strong>
+                <p>Sends a message as part of the ongoing conversation in a specific session.</p>
+                <pre>
+Request:
+{
+  "session_id": "The unique session ID",
+  "message": "The user's message"
+}
+Response:
+{
+  "message": "The negotiator's reply"
+}
+                </pre>
+            </li>
+            <li>
+                <strong>POST /end_session</strong>
+                <p>Ends an active session and clears the stored conversation.</p>
+                <pre>
+Request:
+{
+  "session_id": "The unique session ID"
+}
+Response:
+{
+  "message": "Session ended"
+}
+                </pre>
+            </li>
+        </ul>
+    </body>
+    </html>
+    """
+    return html_doc, 200
 
 
 @app.route('/start_session', methods=['POST'])
